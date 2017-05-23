@@ -38,7 +38,7 @@ class App {
     router.get('/app/recipe/:recipeId/count', (req, res) => {
         var id = req.params.recipeId;
         console.log('Query single recipe with id: ' + id);
-        this.Tasks.retrieveTasksCount(res, {recipeId: id});
+        this.recipes.retrieveRecipeCount(res, {recipeId: id});
     });
 
     router.post('/app/recipe/', (req, res) => {
