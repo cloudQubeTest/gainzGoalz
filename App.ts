@@ -35,11 +35,6 @@ class App {
   private routes(): void {
     let router = express.Router();
     
-    router.get('/app/recipe/:recipeId/count', (req, res) => {
-        var id = req.params.recipeId;
-        console.log('Query single recipe with id: ' + id);
-        this.recipes.retrieveRecipeCount(res, {recipeId: id});
-    });
 
     router.post('/app/recipe/', (req, res) => {
         console.log(req.body);
