@@ -90,19 +90,3 @@ function populateReceipeDetails(elementId, recipe) {
 	element.innerHTML = newElement;	
 }
 
-//JQuery based function
-function populateListItems2(elementId, recipe) {
-	var newElement = "";
-		newElement += "<tr>";
-		newElement += "<td>" + recipe.instructions + "</td>";
-		newElement += "<td><span class=\"badge\">" + recipe.carbs + "</span></td>";
-		newElement += "<td>";
-		newElement += "<div class=\"input-group\">";
-		newElement += "<span class=\"input-group-addon\" style=\"border-style:none;\">";
-		newElement += "<input type=\"checkbox\">";
-		newElement += "</span>";
-		newElement += "</div>";
-		newElement += "</td>";
-		newElement += "</tr>";
-	$("#" + elementId).append(newElement);
-}
