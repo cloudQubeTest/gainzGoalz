@@ -1,2 +1,7 @@
 
 *.interim
+<<<<<<< HEAD
+=======
+
+db/
+>>>>>>> master
