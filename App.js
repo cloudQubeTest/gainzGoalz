@@ -24,10 +24,10 @@ var App = (function () {
     App.prototype.routes = function () {
         var _this = this;
         var router = express.Router();
-        router.use(function (req, res, next) {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-            next();
+        router.get('/app/recipe/:recipeId/count', function (req, res) {
+            var id = req.params.recipeId;
+            console.log('Query single recipe with id: ' + id);
+            _this.Tasks.retrieveTasksCount(res, { recipeId: id });
         });
         router.post('/app/recipe/', function (req, res) {
             console.log(req.body);
@@ -50,16 +50,11 @@ var App = (function () {
             console.log('Query All recipe');
             _this.recipes.retrieveAllRecipes(res);
         });
-        router.get('*', function (req, res) {
-            res.sendFile(__dirname + '/dist/index.html');
-        });
-        /*
-            this.express.use('/app/json/', express.static(__dirname+'/app/json'));
-            this.express.use('/images', express.static(__dirname+'/Images'));
-            this.express.use('/styles', express.static(__dirname+'/Styles'));
-            this.express.use('/', express.static(__dirname+'/pages')); */
-        this.express.use('/', express.static(__dirname + '/dist'));
         this.express.use('/', router);
+        this.express.use('/app/json/', express.static(__dirname + '/app/json'));
+        this.express.use('/images', express.static(__dirname + '/Images'));
+        this.express.use('/styles', express.static(__dirname + '/Styles'));
+        this.express.use('/', express.static(__dirname + '/pages'));
     };
     return App;
 }());

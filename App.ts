@@ -31,17 +31,11 @@ class App {
     this.express.use(bodyParser.urlencoded({ extended: false }));
   }
 
-
   // Configure API endpoints.
   private routes(): void {
     let router = express.Router();
     
-    router.use( (req, res, next) => {
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-        next();
-    });
-    
+
     router.post('/app/recipe/', (req, res) => {
         console.log(req.body);
         var jsonObj = req.body;
@@ -66,20 +60,13 @@ class App {
         this.recipes.retrieveAllRecipes(res);
     });
 
-     router.get('*', (req, res) => {
-        res.sendFile(__dirname + '/dist/index.html');
-    });
 
-/*
+    this.express.use('/', router);
+
     this.express.use('/app/json/', express.static(__dirname+'/app/json'));
     this.express.use('/images', express.static(__dirname+'/Images'));
     this.express.use('/styles', express.static(__dirname+'/Styles'));
-    this.express.use('/', express.static(__dirname+'/pages')); */
-
-    this.express.use('/', express.static(__dirname+'/dist'));
-
-        this.express.use('/', router);
-
+    this.express.use('/', express.static(__dirname+'/pages'));
 
   }
 
